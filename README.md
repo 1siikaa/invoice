@@ -1,4 +1,4 @@
-
+Hi
 # Invoice App
 
 ## Deployment Link 
@@ -19,9 +19,9 @@ This is a simple invoicing web app built with ReactJS. The app allows users to c
 
 To use the app, simply clone the repository and run `npm start` to start the development server. The app should open in your default browser at http://localhost:3000/.
 
-## Installation in Github
+## Installation from Github to Node.js
 ```yml
-git clone https://github.com/1siikaa/invoice](https://github.com/1siikaa/invoiceGenerator
+git clone https://github.com/1siikaa/invoiceGenerator
 ```
 
 ## Install Dependencies
