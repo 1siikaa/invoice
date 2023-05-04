@@ -21,7 +21,7 @@ To use the app, simply clone the repository and run `npm start` to start the dev
 
 ## Installation in Github
 ```yml
-git clone https://github.com/1siikaa/invoice
+git clone https://github.com/1siikaa/invoice](https://github.com/1siikaa/invoiceGenerator
 ```
 
 ## Install Dependencies
