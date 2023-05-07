@@ -22,7 +22,12 @@ export default function InvoiceForm({ addInvoice}) {
     const { name, value } = event.target;
   
     if ((name === "discountPct" || name === "taxPct") && value > 100) {
+      
       alert(`${name} cannot be greater than 100`);
+      setFields((prevState) => ({
+        ...prevState,
+        [name]: "",
+      }));
     }
   
     if (value < 0) {
@@ -80,15 +85,30 @@ export default function InvoiceForm({ addInvoice}) {
     if (name === "discount") {
       discount = parseFloat(value);
       discountPct = (discount / (fields.qty * fields.price)) * 100;
+      if(discountPct > 100){
+        alert('discount % must be between 0 t0 100 positive')
+        discount =0;
+        discountPct = 0
+      }
+     
     } else {
       discountPct = parseFloat(value);
       discount = (discountPct / 100) * (fields.qty * fields.price);
+      if(discount < 0){
+        alert('discount must be positive')
+        discount =  0
+        discountPct= 0
+      }
+     
     }
+
+   
     setFields((prevState) => ({
       ...prevState,
       discount: discount,
       discountPct: discountPct
     }));
+  
   };
   
   const handleTaxChange = (event) => {
@@ -98,9 +118,19 @@ export default function InvoiceForm({ addInvoice}) {
     if (name === "tax") {
       tax = parseFloat(value);
       taxPct = (tax / (fields.qty * fields.price - fields.discount)) * 100;
+      if(taxPct > 100){
+        alert('tax % must be between 0 t0 100 positive')
+        tax =0;
+        taxPct = 0
+      }
     } else {
       taxPct = parseFloat(value);
       tax = ((fields.qty * fields.price - fields.discount) * (taxPct / 100));
+      if(tax < 0){
+        alert('tax must be positive')
+        tax =  0
+        taxPct= 0
+      }
     }
     setFields((prevState) => ({
       ...prevState,
