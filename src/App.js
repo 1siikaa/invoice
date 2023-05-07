@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InvoiceForm from "./components/invoice/invoiceForm";
 import InvoiceGrid from "./components/invoice/invoiceGrid";
+
 export default function App() {
   const [invoices, setInvoices] = useState([]);
 
@@ -28,6 +29,8 @@ export default function App() {
         editInvoice={editInvoice}
         setInvoices={setInvoices}  // pass setInvoices down as a prop
       />
+     
+
     </div>
   );
 }
