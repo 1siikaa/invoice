@@ -37,11 +37,20 @@ export default function InvoiceGrid({ invoices, deleteInvoice, editInvoice, setI
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    let updatedInvoice = {
+    let updatedInvoice
+   if((name === 'qty' || name === 'price') && (value < 0)){
+    
+    alert(`please select a positive number for ${name}`)
+    updatedInvoice = {
       ...editedInvoice,
-      [name]: value,
+      [name]: 0,
     };
+   }
+  else{ updatedInvoice = {
+    ...editedInvoice,
+    [name]: value,
+  };
+  }
 
     if (name === "discountPct") {
       updatedInvoice = {
@@ -60,19 +69,39 @@ export default function InvoiceGrid({ invoices, deleteInvoice, editInvoice, setI
     }
 
     if (name === "taxPct") {
+      if(value > 100 || value < 0){
+        alert('please choose tax percent between o to 100')
+        updatedInvoice = {
+         ...updatedInvoice,
+          tax: 0,
+          taxPct: 0
+        };
+      }
+      else{
       updatedInvoice = {
         ...updatedInvoice,
         tax: (updatedInvoice.qty * updatedInvoice.price * value) / 100,
       };
     }
+    }
 
     if (name === "tax") {
-      const taxPct = (value / (editedInvoice.qty * editedInvoice.price)) * 100;
+      let taxPct = (value / (editedInvoice.qty * editedInvoice.price)) * 100;
+      if(taxPct > 100){
+        alert('tax percent must be between 0 to 100')
+        updatedInvoice = {
+          
+          ...updatedInvoice,
+          taxPct : 0,
+          tax : 0
+        };
+      }else{
       updatedInvoice = {
         ...updatedInvoice,
         taxPct: isNaN(taxPct) ? 0 : taxPct,
         tax: value,
       };
+    }
     }
 
     setEditedInvoice(updatedInvoice);
