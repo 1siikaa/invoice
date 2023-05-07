@@ -86,8 +86,8 @@ export default function InvoiceForm({ addInvoice}) {
     }
     setFields((prevState) => ({
       ...prevState,
-      discount: discount.toFixed(2),
-      discountPct: discountPct.toFixed(2),
+      discount: discount,
+      discountPct: discountPct
     }));
   };
   
@@ -105,7 +105,7 @@ export default function InvoiceForm({ addInvoice}) {
     setFields((prevState) => ({
       ...prevState,
       tax: tax,
-      taxPct: Number(taxPct.toFixed(2)),
+      taxPct: Number(taxPct),
     }));
   };
   
